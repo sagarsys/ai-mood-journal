@@ -1,6 +1,6 @@
 ## AI Mood Journaling App
-Journaling app with AI to get insights on your mood, using NextJs and React
 
+Journaling app with AI to get insights on your mood, using NextJs and React
 
 **This project is built with:**
 
@@ -14,12 +14,16 @@ It requires Node V20+ to run.
 
 ## Getting Started
 
-First, run the development server:
+1. Install deps and run the development server:
 
 ```bash
 npm install
-npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Sign up with [Clerk](https://clerk.dev) and create a new application to get your API keys
+3. Setup the environment variables (refer to `.env.example`)
+
+4. `npm run dev` to start the development server
+
+5. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
