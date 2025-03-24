@@ -1,12 +1,18 @@
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/ui/button'
+import Link from 'next/link'
 
 export default function Home() {
-    return (
-        <div className="h-[100vh] grid grid-flow-row grid-cols-1 gap-1 justify-items-center content-center">
-            <h1 className="text-3xl font-bold">
-                Hello world!
-            </h1>
-            <Button className="mt-4 max-w-[500px]">I am a button</Button>
-        </div>
-    );
+  return (
+    <div className="h-screen w-full flex-center">
+      <div className="mx-auto px-8">
+        <h1 className="text-3xl font-bold">
+          The best Journaling app, ever!
+        </h1>
+        <p className="text-xl opacity-60 mt-3">Track your journaling mood</p>
+        <Link href="/journal">
+          <Button variant="outline" className="mt-4">Get started</Button>
+        </Link>
+      </div>
+    </div>
+  )
 }
