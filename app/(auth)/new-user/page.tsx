@@ -5,7 +5,6 @@ import { UserResource } from '@clerk/types'
 
 const createNewUser = async () => {
   const user = await currentUser() as unknown as UserResource
-  await new Promise(resolve => setTimeout(resolve, 10000))
   const match = await prisma.user.findUnique({ where: { clerkId: user.id } })
 
   if (!match) {
