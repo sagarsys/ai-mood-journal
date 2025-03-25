@@ -16,7 +16,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
       <ThemeProvider
         attribute="class"
@@ -25,7 +25,10 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
         disableTransitionOnChange
       >
         <Header />
-        {children}
+        {/* 64px = header height */}
+        <main className="w-full h-[calc(100vh-64px)]">
+          {children}
+        </main>
       </ThemeProvider>
       </body>
       </html>

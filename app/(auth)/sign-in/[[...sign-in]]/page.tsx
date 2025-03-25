@@ -1,7 +1,7 @@
 import { SignIn } from '@clerk/nextjs'
 
 export default function SignInPage() {
-  return <div className="flex-center h-[90vh]">
+  return <div className="h-full flex-center">
     <SignIn />
   </div>
 }
