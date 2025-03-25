@@ -1,6 +1,6 @@
 {
   "name": "ai-mood-journal",
-  "description": "Journaling app with AI to get insights on your mood, using NextJs and React\n\n",
+  "description": "Journaling app with AI to get insights on your mood, using NextJs and React",
   "version": "0.1.0",
   "private": false,
   "scripts": {
