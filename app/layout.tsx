@@ -4,7 +4,8 @@ import { ReactNode } from 'react'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { ClerkProvider } from '@clerk/nextjs'
 import type { Metadata } from 'next'
-import { Header } from '@/components/header'
+import { Header } from '@/components/Header'
+import SideNav from '@/components/SideNav'
 
 
 export const metadata: Metadata = {
@@ -29,7 +30,7 @@ export default function RootLayout({ children }: Readonly<{ children: ReactNode;
         <Header />
         {/* 64px = header height */}
         <main className="w-full h-[calc(100vh-50px)] relative">
-          <aside className="absolute w-75 top-0 left-0 h-full border-r px-4 py-12">MOOD</aside>
+          <SideNav />
           <div className="ml-75 h-full p-8">
             {children}
           </div>

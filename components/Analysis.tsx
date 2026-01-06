@@ -25,7 +25,7 @@ const Analysis = ({ analysis }: Props) => {
         <ul>
           {displayed.map(({ name, value, className, style }) => (
             <li key={name} className={`pb-4 mb-4 border-b leading-5 ${className}`} style={style}>
-              <span className="mr-2 text-lg font-semibold">{name}:</span>{value}
+              <span className="mr-2 text-lg font-semibold">{name}:</span> <span className="capitalize">{value}</span>
             </li>
           ))}
         </ul>

@@ -1,22 +1,11 @@
-import { getUserByClerkId } from '@/utils/auth'
-import { prisma } from '@/utils/db/client'
 import NewEntryCard from '@/components/NewEntryCard'
 import EntryCard from '@/components/EntryCard'
 import Link from 'next/link'
 import { JournalEntry } from '@/prisma/generated/client'
-
-const getEntries = async () => {
-  const user = await getUserByClerkId();
-
-  return prisma.journalEntry.findMany({
-    where: { userId: user?.id as string },
-    include: { analysis: true },
-    orderBy: { createdAt: 'desc' }
-  })
-}
+import { getEntriesQuery } from '@/utils/db/query'
 
 export default async function JournalPage() {
-  const entries: JournalEntry[] = await getEntries();
+  const entries: JournalEntry[] = await getEntriesQuery();
 
   return (
     <div className="h-full w-full">
