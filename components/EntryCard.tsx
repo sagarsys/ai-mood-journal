@@ -7,9 +7,6 @@ type EntryCardProps = {
 
 const EntryCard = ({ entry }: EntryCardProps) => {
   const date = new Date(entry.createdAt).toDateString()
-
-  console.log(entry)
-
   return (
     <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow text-black/80">
       <div className="px-4 py-5 sm:px-6">{date}</div>
