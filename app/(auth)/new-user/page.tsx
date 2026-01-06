@@ -1,7 +1,7 @@
 import { currentUser } from '@clerk/nextjs/server'
 import { prisma } from '@/utils/db/client'
 import { redirect } from 'next/navigation'
-import { UserResource } from '@clerk/types'
+import type { UserResource } from '@clerk/types'
 
 const createNewUser = async () => {
   const user = await currentUser() as unknown as UserResource

@@ -1,31 +1,27 @@
-import 'dotenv'
-import { PrismaClient } from '@prisma/client'
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { neonConfig, Pool } from '@neondatabase/serverless'
+import { PrismaClient } from '@/prisma/generated/client'
+import { PrismaPg } from '@prisma/adapter-pg'
+import { Pool } from 'pg'
+import 'dotenv/config'
+import { env } from 'prisma/config'
 
-import ws from 'ws'
-import dotenv from 'dotenv'
+const prismaClientSingleton = () => {
+  const connectionString = env('DATABASE_URL')
 
-const isProd = process.env.NODE_ENV === 'production'
+  if (!connectionString) {
+    throw new Error('DATABASE_URL is not set')
+  }
 
-dotenv.config({ path: isProd ? '.env' : `.env.${process.env.NODE_ENV}` })
+  const pool = new Pool({ connectionString })
+  const adapter = new PrismaPg(pool)
 
-neonConfig.webSocketConstructor = ws
-
-// To work in edge environments (Cloudflare Workers, Vercel Edge, etc.), enable querying over fetch
-neonConfig.poolQueryViaFetch = true
-
-// Type definitions
-declare global {
-  var prisma: PrismaClient | undefined
+  return new PrismaClient({ adapter })
 }
 
-const connectionString = `${process.env.DATABASE_URL}`
 
-const pool = new Pool({ connectionString })
-const adapter = new PrismaNeon(pool)
-export const prisma = global.prisma || new PrismaClient({ adapter, log: ['query'] })
+declare const globalThis: {
+  prismaGlobal: ReturnType<typeof prismaClientSingleton>;
+} & typeof global;
 
-if (!isProd) global.prisma = prisma
+export const prisma = globalThis.prismaGlobal ?? prismaClientSingleton()
 
-export default prisma
+if (env('NODE_ENV') !== 'production') globalThis.prismaGlobal = prisma

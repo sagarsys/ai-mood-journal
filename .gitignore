@@ -43,3 +43,8 @@ next-env.d.ts
 
 # IDE
 .idea
+.cursorindexingignore
+.cursorrules
+
+prisma/generated/*
+prisma/migrations/*
